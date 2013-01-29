@@ -1,0 +1,33 @@
+﻿@model Finder.Models.FinderViewModel
+@{
+    ViewBag.Title = this.App["SiteName"] + " | File Manager Browser";
+}
+
+@section scripts {
+    <script type="text/javascript" src="@Url.Content( "~/ckfinder/ckfinder.js" )"></script>
+    <script type="text/javascript">
+        //<![CDATA[
+        $(document).ready(function () {
+            $(window).bind("resize", resizeWindow);
+            resizeWindow();
+            function resizeWindow(e) {
+                var newWindowHeight = $(window).height();
+                $("#ckfinder").css("min-height", newWindowHeight - 325);
+            }
+        });
+        //]]>
+    </script>
+}
+<h1 class="page-title">File Manager Browser</h1>
+<div class="page-help">
+    Use the file manager browser to upload content resources (files, images, newsletters, content, etc.). Create folders to organize content resources.
+</div>
+<div id="browser-pane">
+    <script type="text/javascript">
+        //<![CDATA[
+        var finder = new CKFinder();
+        finder.basePath = '/ckfinder/';
+        finder.create();
+        //]]>
+    </script>
+</div>

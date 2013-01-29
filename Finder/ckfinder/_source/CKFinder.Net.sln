@@ -1,0 +1,41 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CKFinder.Net", "CKFinder.Net.csproj", "{C5376ADF-309A-48DE-904C-B1FE1965C370}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Acme.Storage", "..\..\..\..\..\Acme Team Projects\Acme\Library\Dev\Src\Acme\Acme.Storage\Acme.Storage.csproj", "{0EB4E174-289E-4F4D-A8A4-0F45CC7374FD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Finder", "..\..\Finder.csproj", "{1D670EA9-761C-4A75-8D82-5B266A82B196}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 1
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://achilles-dev:8080/tfs/defaultcollection
+		SccProjectUniqueName0 = ..\\..\\..\\..\\..\\Acme\u0020Team\u0020Projects\\Acme\\Library\\Dev\\Src\\Acme\\Acme.Storage\\Acme.Storage.csproj
+		SccProjectName0 = $/Achilles\u0020Acme/Acme/Acme.Storage
+		SccAuxPath0 = http://achilles-dev:8080/tfs/defaultcollection
+		SccLocalPath0 = ..\\..\\..\\..\\..\\Acme\u0020Team\u0020Projects\\Acme\\Library\\Dev\\Src\\Acme\\Acme.Storage
+		SccProvider0 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C5376ADF-309A-48DE-904C-B1FE1965C370}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5376ADF-309A-48DE-904C-B1FE1965C370}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5376ADF-309A-48DE-904C-B1FE1965C370}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5376ADF-309A-48DE-904C-B1FE1965C370}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0EB4E174-289E-4F4D-A8A4-0F45CC7374FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0EB4E174-289E-4F4D-A8A4-0F45CC7374FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0EB4E174-289E-4F4D-A8A4-0F45CC7374FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0EB4E174-289E-4F4D-A8A4-0F45CC7374FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D670EA9-761C-4A75-8D82-5B266A82B196}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D670EA9-761C-4A75-8D82-5B266A82B196}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D670EA9-761C-4A75-8D82-5B266A82B196}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D670EA9-761C-4A75-8D82-5B266A82B196}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
