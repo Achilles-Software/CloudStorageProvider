@@ -43,12 +43,12 @@ namespace CKFinder.Connector.CommandHandlers
 				return;
 			}
 
-			if ( !System.IO.Directory.Exists( this.CurrentFolder.ServerPath ) )
+			if ( !Achilles.Acme.Storage.IO.Directory.Exists( this.CurrentFolder.ServerPath ) )
 				ConnectorException.Throw( Errors.FolderNotFound );
 
 			try
 			{
-				System.IO.Directory.Delete( this.CurrentFolder.ServerPath, true );
+				Achilles.Acme.Storage.IO.Directory.Delete( this.CurrentFolder.ServerPath, true );
 			}
 			catch ( System.UnauthorizedAccessException )
 			{
@@ -77,7 +77,7 @@ namespace CKFinder.Connector.CommandHandlers
 
 			try
 			{
-				System.IO.Directory.Delete( this.CurrentFolder.ThumbsServerPath, true );
+				Achilles.Acme.Storage.IO.Directory.Delete( this.CurrentFolder.ThumbsServerPath, true );
 			}
 			catch { /* No errors if we are not able to delete the thumbs directory. */ }
 		}

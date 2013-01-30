@@ -45,17 +45,23 @@ namespace Achilles.Acme.Storage.IO
                 throw new ArgumentException("path empty");
             }
             
-            return new DirectoryInfo( path);
+            _provider.CreateDirectory( path );
+
+            return new DirectoryInfo( path );
         }
 
+        /// <summary>
+        /// Deletes an empty directory from a specified path.
+        /// </summary>
+        /// <param name="path">Path for directory to delete.</param>
         public static void Delete( string path )
         {
-            _provider.DeleteDirectory( path );
+            Delete( path, false );
         }
         
         public static void Delete( string path, bool recursive )
         {
-            _provider.DeleteDirectory( path );
+            _provider.DeleteDirectory( path, recursive );
         }
 
         public static bool Exists( string path )

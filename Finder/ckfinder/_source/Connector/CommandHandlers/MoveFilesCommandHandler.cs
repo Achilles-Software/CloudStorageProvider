@@ -154,7 +154,7 @@ namespace CKFinder.Connector.CommandHandlers
 				}
 
 				// check #8 (invalid file name)
-				if ( !System.IO.File.Exists( sourceFilePath ) || System.IO.Directory.Exists( sourceFilePath ) )
+				if ( !Achilles.Acme.Storage.IO.File.Exists( sourceFilePath ) || Achilles.Acme.Storage.IO.Directory.Exists( sourceFilePath ) )
 				{
 					this.appendErrorNode( Errors.FileNotFound, name, type, path );
 					continue;
@@ -163,7 +163,7 @@ namespace CKFinder.Connector.CommandHandlers
 				// check #9 (max size)
 				if ( this.CurrentFolder.ResourceTypeName != type )
 				{
-					System.IO.FileInfo fileInfo = new System.IO.FileInfo( sourceFilePath );
+					Achilles.Acme.Storage.IO.FileInfo fileInfo = new Achilles.Acme.Storage.IO.FileInfo( sourceFilePath );
 					if ( this.CurrentFolder.ResourceTypeInfo.MaxSize > 0 && fileInfo.Length > this.CurrentFolder.ResourceTypeInfo.MaxSize )
 					{
 						this.appendErrorNode( Errors.UploadedTooBig, name, type, path );
@@ -181,13 +181,13 @@ namespace CKFinder.Connector.CommandHandlers
 					continue;
 				}
 				// check if file exists if we don't force overwriting
-				else if ( System.IO.File.Exists( destinationFilePath ) )
+				else if ( Achilles.Acme.Storage.IO.File.Exists( destinationFilePath ) )
 				{
 					if ( options.Contains( "overwrite" ) )
 					{
 						try
 						{
-							System.IO.File.Delete( destinationFilePath );
+							Achilles.Acme.Storage.IO.File.Delete( destinationFilePath );
 						}
 						catch ( Exception )
 						{
@@ -196,7 +196,7 @@ namespace CKFinder.Connector.CommandHandlers
 						}
 						try
 						{
-							System.IO.File.Move( sourceFilePath, destinationFilePath );
+							Achilles.Acme.Storage.IO.File.Move( sourceFilePath, destinationFilePath );
 							moved++;
 						}
 						catch ( Exception )
@@ -214,14 +214,14 @@ namespace CKFinder.Connector.CommandHandlers
 						{
 							fileName = sFileNameNoExt + "(" + iCounter.ToString() + ")" + System.IO.Path.GetExtension( name );
 							destinationFilePath = System.IO.Path.Combine( this.CurrentFolder.ServerPath, fileName );
-							if ( !System.IO.File.Exists( destinationFilePath ) )
+							if ( !Achilles.Acme.Storage.IO.File.Exists( destinationFilePath ) )
 								break;
 							else
 								iCounter++;
 						}
 						try
 						{
-							System.IO.File.Move( sourceFilePath, destinationFilePath );
+							Achilles.Acme.Storage.IO.File.Move( sourceFilePath, destinationFilePath );
 							moved++;
 						}
 						catch ( ArgumentException )
@@ -254,7 +254,7 @@ namespace CKFinder.Connector.CommandHandlers
 				{
 					try
 					{
-						System.IO.File.Move( sourceFilePath, destinationFilePath );
+						Achilles.Acme.Storage.IO.File.Move( sourceFilePath, destinationFilePath );
 						moved++;
 					}
 					catch ( ArgumentException )

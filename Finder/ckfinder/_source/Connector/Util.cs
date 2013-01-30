@@ -44,10 +44,10 @@ namespace CKFinder.Connector
 		///		replacement to solve this problem.
 		///		</para>
 		/// </remarks>
-		public static DirectoryInfo CreateDirectory( string path )
+		public static Achilles.Acme.Storage.IO.DirectoryInfo CreateDirectory( string path )
 		{
 			// Create the directory info object for that dir (normalized to its absolute representation).
-			DirectoryInfo oDir = new DirectoryInfo( Path.GetFullPath( path ) );
+			Achilles.Acme.Storage.IO.DirectoryInfo oDir = new Achilles.Acme.Storage.IO.DirectoryInfo( Path.GetFullPath( path ) );
 
 			try
 			{
@@ -59,13 +59,15 @@ namespace CKFinder.Connector
 			}
 			catch
 			{
-				CreateDirectoryUsingDll( oDir );
+                // TJT: Review this code
+				
+                CreateDirectoryUsingDll( oDir );
 
-				return new DirectoryInfo( path );
+				return new Achilles.Acme.Storage.IO.DirectoryInfo( path );
 			}
 		}
 
-		private static void CreateDirectoryUsingDll( DirectoryInfo dir )
+		private static void CreateDirectoryUsingDll( Achilles.Acme.Storage.IO.DirectoryInfo dir )
 		{
 			// On some occasion, the DirectoryInfo.Create() function will 
 			// throw an error due to a bug in the .Net Framework design. For

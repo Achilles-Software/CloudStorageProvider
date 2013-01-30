@@ -53,7 +53,7 @@ namespace CKFinder.Connector.CommandHandlers
 			}
 
 			// Get the current folder.
-			System.IO.DirectoryInfo oDir = new System.IO.DirectoryInfo( this.CurrentFolder.ServerPath );
+			Achilles.Acme.Storage.IO.DirectoryInfo oDir = new Achilles.Acme.Storage.IO.DirectoryInfo( this.CurrentFolder.ServerPath );
 
 			bool bMoved = false;
 
@@ -66,7 +66,7 @@ namespace CKFinder.Connector.CommandHandlers
 					// Build the new folder path.
 					string newFolderPath = System.IO.Path.Combine( oDir.Parent.FullName, newFileName );
 
-					if ( System.IO.Directory.Exists( newFolderPath ) || System.IO.File.Exists( newFolderPath ) )
+					if ( Achilles.Acme.Storage.IO.Directory.Exists( newFolderPath ) || Achilles.Acme.Storage.IO.File.Exists( newFolderPath ) )
 						ConnectorException.Throw( Errors.AlreadyExist );
 
 					oDir.MoveTo( newFolderPath );
@@ -115,14 +115,14 @@ namespace CKFinder.Connector.CommandHandlers
 				try
 				{
 					// Get the thumbnails folder.
-					System.IO.DirectoryInfo oThumbsDir = new System.IO.DirectoryInfo( this.CurrentFolder.ThumbsServerPath );
+					Achilles.Acme.Storage.IO.DirectoryInfo oThumbsDir = new Achilles.Acme.Storage.IO.DirectoryInfo( this.CurrentFolder.ThumbsServerPath );
 
 					// Build the new folder path.
 					string newThumbsFolderPath = System.IO.Path.Combine( oThumbsDir.Parent.FullName, newFileName );
 
-					if ( System.IO.Directory.Exists( newThumbsFolderPath ) )
+					if ( Achilles.Acme.Storage.IO.Directory.Exists( newThumbsFolderPath ) )
 					{
-						System.IO.File.Delete( this.CurrentFolder.ThumbsServerPath );
+						Achilles.Acme.Storage.IO.File.Delete( this.CurrentFolder.ThumbsServerPath );
 					}
 					else
 					{
@@ -132,7 +132,7 @@ namespace CKFinder.Connector.CommandHandlers
 						}
 						catch
 						{
-							System.IO.File.Delete( this.CurrentFolder.ThumbsServerPath );
+							Achilles.Acme.Storage.IO.File.Delete( this.CurrentFolder.ThumbsServerPath );
 						}
 					}
 				}

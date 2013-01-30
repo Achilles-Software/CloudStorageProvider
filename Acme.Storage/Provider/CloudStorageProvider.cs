@@ -44,13 +44,14 @@ namespace Achilles.Acme.Storage.Provider
 
         #region Directory API
 
-        public abstract DirectoryInfo CreateDirectory( string path );
+        public abstract bool CreateDirectory( string path );
         public abstract bool DirectoryExists( string path );
-        public abstract void DeleteDirectory( string path );
+        public abstract void DeleteDirectory( string path, bool recursive );
         public abstract DirectoryInfo[] GetDirectories( DirectoryInfo dirInfo );
         public abstract string[] GetDirectories( string path );
         public abstract FileInfo[] GetDirectoryFiles( DirectoryInfo dirInfo );
         public abstract string[] GetDirectoryFiles( string path );
+        public abstract void MoveDirectory( string sourcePath, string destPath );
 
         #endregion
 
@@ -62,6 +63,7 @@ namespace Achilles.Acme.Storage.Provider
         public abstract System.IO.Stream FileOpenRead( string path );
         public abstract System.IO.Stream FileOpenWrite( string path );
         public abstract void CopyFile( string sourcePath, string destPath );
+        public abstract void MoveFile( string sourceFileName, string destFileName );
         public abstract void FileUploadFromStream( string path, System.IO.Stream inputStream );
 
         #endregion 

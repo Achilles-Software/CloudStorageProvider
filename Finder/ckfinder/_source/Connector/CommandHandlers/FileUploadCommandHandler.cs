@@ -13,6 +13,7 @@
 using System;
 using System.Web;
 using System.Text.RegularExpressions;
+using System.Text;
 
 namespace CKFinder.Connector.CommandHandlers
 {
@@ -94,9 +95,10 @@ namespace CKFinder.Connector.CommandHandlers
 							else
 							{
                                 System.IO.Stream uploadFileStream = Achilles.Acme.Storage.IO.File.OpenWrite( sFilePath );
-                                
+
                                 try
                                 {
+                                    oFile.InputStream.Position = 0;
                                     oFile.InputStream.CopyTo( uploadFileStream );
                                     uploadFileStream.Flush();
                                 }
@@ -104,7 +106,7 @@ namespace CKFinder.Connector.CommandHandlers
                                 {
                                     uploadFileStream.Close();
                                 }
-
+                                
 								if ( Config.Current.SecureImageUploads && ImageTools.IsImageExtension( sExtension ) && !ImageTools.ValidateImage( sFilePath ) )
 								{
 									Achilles.Acme.Storage.IO.File.Delete( sFilePath );
@@ -115,6 +117,8 @@ namespace CKFinder.Connector.CommandHandlers
 
 								if ( imagesSettings.MaxHeight > 0 && imagesSettings.MaxWidth > 0 )
 								{
+                                    // TJT: Review this
+
                                     //ImageTools.ResizeImage( sFilePath, sFilePath, imagesSettings.MaxWidth, imagesSettings.MaxHeight, true, imagesSettings.Quality );
 
                                     //if ( Config.Current.CheckSizeAfterScaling && this.CurrentFolder.ResourceTypeInfo.MaxSize > 0 )

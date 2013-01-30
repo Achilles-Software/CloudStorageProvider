@@ -47,12 +47,14 @@ namespace CKFinder.Connector.CommandHandlers
 
 				bool bCreated = false;
 
-				if ( System.IO.Directory.Exists( sServerDir ) )
+				if ( Achilles.Acme.Storage.IO.Directory.Exists( sServerDir ) )
 					ConnectorException.Throw( Errors.AlreadyExist );
 
 				try
 				{
-					Util.CreateDirectory( sServerDir );
+                    // The Cloud Storage connector calls IO.Directory.Create() directly
+					// Util.CreateDirectory( sServerDir );
+                    Achilles.Acme.Storage.IO.Directory.CreateDirectory( sServerDir );
 					bCreated = true;
 				}
 				catch ( ArgumentException )

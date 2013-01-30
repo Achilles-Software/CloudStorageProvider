@@ -18,7 +18,7 @@ namespace Achilles.Acme.Storage.AWS
             get { throw new NotImplementedException(); }
         }
 
-        public override IO.DirectoryInfo CreateDirectory( string path )
+        public override bool CreateDirectory( string path )
         {
             throw new NotImplementedException();
         }
@@ -28,7 +28,12 @@ namespace Achilles.Acme.Storage.AWS
             throw new NotImplementedException();
         }
 
-        public override void DeleteDirectory( string path )
+        public override void DeleteDirectory( string path, bool recursive )
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void MoveDirectory( string newPath, string oldPath )
         {
             throw new NotImplementedException();
         }
@@ -83,6 +88,10 @@ namespace Achilles.Acme.Storage.AWS
             throw new NotImplementedException();
         }
 
+        public override void MoveFile( string sourceFileName, string destFileName )
+        {
+            throw new NotImplementedException();
+        }
         public override void FileUploadFromStream( string path, System.IO.Stream inputStream )
         {
             throw new NotImplementedException();

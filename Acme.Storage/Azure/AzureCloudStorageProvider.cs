@@ -110,14 +110,66 @@ namespace Achilles.Acme.Storage.Azure
 
         #region Public "Directory" API Methods
 
-        public override DirectoryInfo CreateDirectory( string path )
+        public override bool CreateDirectory( string path )
         {
-            throw new NotImplementedException();
+            path = path.ToAzurePath();
+
+            string blobName = String.Concat( path, "/$.dir" );
+
+            try
+            {
+                CloudBlockBlob dirBlob = _container.GetBlockBlobReference( blobName );
+
+                using ( var contentStream = new System.IO.MemoryStream( Encoding.UTF8.GetBytes( "" ) ) )
+                {
+                    dirBlob.UploadFromStream( contentStream );
+                }
+
+                BlobProperties props = dirBlob.Properties;
+                props.ContentType = "text/plain";
+                
+                dirBlob.SetProperties();
+            }
+            catch ( Exception )
+            {
+                return false;
+            }
+
+            return true;
         }
 
-        public override void DeleteDirectory( string path )
+        public override void DeleteDirectory( string path, bool recursive )
         {
-            throw new NotImplementedException();
+            // TJT: Needs to support non-recursive directory deletion
+
+            if ( path == null )
+                throw new ArgumentNullException();
+
+            // TJT: Fixme..
+
+            //if ( !IsValidDirectory( path ) )
+            //    throw new ArgumentException();
+
+            // cannot delete root directory
+            if ( path == "/" )
+                throw new ArgumentException();
+
+            string prefix = GetAzurePath( path );
+            bool useFlatBlobListing = true;
+
+            // Supports recursive enumeration
+            IEnumerable<IListBlobItem> allFiles = _blobClient.ListBlobs( prefix, useFlatBlobListing );
+            
+            foreach (var file in allFiles) 
+            {
+                string uri = file.Uri.ToString();
+
+                CloudBlockBlob b = _container.GetBlockBlobReference(uri);
+                if (b != null)
+                {
+                    b.Delete();
+                }
+            }
         }
         
         public override bool DirectoryExists( string path )
@@ -214,6 +266,11 @@ namespace Achilles.Acme.Storage.Azure
             string[] result = fileBlobs.Select( r => r.Uri.AbsolutePath.ToString() ).ToArray().ToFileSystemPath( path );
 
             return result;
+        }
+
+        public override void MoveDirectory( string sourcePath, string destPath ) 
+        {
+            throw new NotImplementedException();
         }
 
         #endregion
@@ -345,6 +402,35 @@ namespace Achilles.Acme.Storage.Azure
 
             //blob.Properties.ContentType = contentType;
             blob.UploadFromStream( fileStream );
+        }
+
+        public override void MoveFile( string sourceFileName, string destFileName )
+        {
+
+            CloudBlockBlob sourceBlob = _container.GetBlockBlobReference( destFileName.ToAzurePath() );
+            CloudBlockBlob destBlob = _container.GetBlockBlobReference( sourceFileName.ToAzurePath() );
+
+            // TJT: Fixme..
+
+            // Check if the original path exists on the provider.
+            //if ( !IsValidFile( originalPath ) )
+            //{
+            //    throw new FileNotFoundException( "The path supplied does not exist on the storage provider.", originalPath );
+            //}
+
+            destBlob.StartCopyFromBlob( sourceBlob );
+
+            try
+            {
+                // Make sure the destination file now exists
+                destBlob.FetchAttributes();
+                
+                sourceBlob.Delete();
+            }
+            catch ( StorageException )
+            {
+                throw;
+            }
         }
 
         #endregion

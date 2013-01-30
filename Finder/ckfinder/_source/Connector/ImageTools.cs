@@ -42,9 +42,9 @@ namespace CKFinder.Connector
 
 			try
 			{
-                // TJT: Fixme - Use stream
                 System.IO.Stream fileStream = Achilles.Acme.Storage.IO.File.OpenRead( filePath );
-				sourceImage = System.Drawing.Image.FromStream( fileStream );
+
+                sourceImage = System.Drawing.Image.FromStream( fileStream );
 				sourceImage.Dispose();
 				return true;
 			}
@@ -65,7 +65,6 @@ namespace CKFinder.Connector
 			try
 			{
                 sourceImage = System.Drawing.Image.FromStream( sourceStream );
-				//sourceImage = System.Drawing.Image.FromFile( sourceFile );
 			}
 			catch ( OutOfMemoryException )
 			{
@@ -143,7 +142,7 @@ namespace CKFinder.Connector
                 }
                 else
                 {
-                    // TJT: Fixme
+                    // TJT: Fixme - stream save requires oCodec?
                     //oResampled.Save( targetStream, oCodec );
                 }
 			}
@@ -158,22 +157,22 @@ namespace CKFinder.Connector
 							OctreeQuantizer quantizer = new OctreeQuantizer( 255, 8 );
 							using ( Bitmap quantized = quantizer.Quantize( oResampled ) )
 							{
-								quantized.Save( targetFile, System.Drawing.Imaging.ImageFormat.Gif );
+								quantized.Save( targetStream, System.Drawing.Imaging.ImageFormat.Gif );
 							}
 						}
 						catch ( System.Security.SecurityException )
 						{
 							// The calls to Marshal might fail in Medium trust, save the image using the default palette
-							oResampled.Save( targetFile, System.Drawing.Imaging.ImageFormat.Png ); 
+							oResampled.Save( targetStream, System.Drawing.Imaging.ImageFormat.Png ); 
 						}
 						break;
 
 					case ".png":
-						oResampled.Save( targetFile, System.Drawing.Imaging.ImageFormat.Png );
+						oResampled.Save( targetStream, System.Drawing.Imaging.ImageFormat.Png );
 						break;
 
 					case ".bmp":
-						oResampled.Save( targetFile, System.Drawing.Imaging.ImageFormat.Bmp );
+						oResampled.Save( targetStream, System.Drawing.Imaging.ImageFormat.Bmp );
 						break;
 				}
 			}

@@ -161,7 +161,7 @@
 		type.Url = BaseUrl + "images/";
 		type.Dir = BaseDir == "" ? "" : BaseDir + "Images/";
 		type.MaxSize = 0;
-		type.AllowedExtensions = new string[] { "bmp", "gif", "jpeg", "jpg", "png" };
+		type.AllowedExtensions = new string[] { "bmp", "gif", "jpeg", "jpg", "png", "txt" };
 		type.DeniedExtensions = new string[] { };
 	}
 

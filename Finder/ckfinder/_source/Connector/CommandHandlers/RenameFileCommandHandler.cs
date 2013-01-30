@@ -68,15 +68,15 @@ namespace CKFinder.Connector.CommandHandlers
 
 			bool bMoved = false;
 
-			if ( !System.IO.File.Exists( filePath ) )
+			if ( !Achilles.Acme.Storage.IO.File.Exists( filePath ) )
 				ConnectorException.Throw( Errors.FileNotFound );
 
-			if ( System.IO.File.Exists( newFilePath ) || System.IO.Directory.Exists( newFilePath ) )
+			if ( Achilles.Acme.Storage.IO.File.Exists( newFilePath ) || Achilles.Acme.Storage.IO.Directory.Exists( newFilePath ) )
 				ConnectorException.Throw( Errors.AlreadyExist );
 
 			try
 			{
-				System.IO.File.Move( filePath, newFilePath );
+				Achilles.Acme.Storage.IO.File.Move( filePath, newFilePath );
 				bMoved = true;
 
 				XmlUtil.SetAttribute( oRenamedFileNode, "newName", newFileName );
@@ -119,7 +119,7 @@ namespace CKFinder.Connector.CommandHandlers
 				try
 				{
 					string thumbPath = System.IO.Path.Combine( this.CurrentFolder.ThumbsServerPath, fileName );
-					System.IO.File.Delete( thumbPath );
+					Achilles.Acme.Storage.IO.File.Delete( thumbPath );
 				}
 				catch { /* No errors if we are not able to delete the thumb. */ }
 			}

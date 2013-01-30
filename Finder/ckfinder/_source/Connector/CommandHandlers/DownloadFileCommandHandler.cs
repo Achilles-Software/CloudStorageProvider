@@ -96,7 +96,6 @@ namespace CKFinder.Connector.CommandHandlers
 			// Buffer to read 10K bytes in chunk:
 			byte[] aBuffer = new Byte[10000];
             System.IO.Stream oStream = Achilles.Acme.Storage.IO.File.OpenRead( filePath );
-			//System.IO.Stream oStream = new System.IO.FileStream( filePath, System.IO.FileMode.Open, System.IO.FileAccess.Read, System.IO.FileShare.Read );
 
 			// Total bytes to read:
 			long iDataToRead = oStream.Length;

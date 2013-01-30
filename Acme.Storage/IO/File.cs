@@ -73,7 +73,7 @@ namespace Achilles.Acme.Storage.IO
 
         public static void Move( string sourceFileName, string destFileName )
         {
-            throw new NotImplementedException();
+            _provider.MoveDirectory( sourceFileName, destFileName );
         }
         
 
