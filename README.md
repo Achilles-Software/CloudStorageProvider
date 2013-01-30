@@ -12,3 +12,6 @@ for ASP.NET.
 
 Please note that this implementation is at the experimentaion level or early alpha stage. The complete package
 provides a MVC 4 test web application, an Azure cloud storage provider and a modified CKFinder connector.
+
+Thanks to Richard Parker for his open source FTP to Azure Blob Storage Bridge.
+See: http://ftp2azure.codeplex.com
